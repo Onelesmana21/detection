@@ -10,11 +10,12 @@ uploaded_file = st.file_uploader("Unggah gambar di sini", type=["jpg","jpeg","pn
 # Load model deteksi objek pretrained YOLOv5 (misal)
 @st.cache(allow_output_mutation=True)
 def load_model():
-    model = torch.hub.load('ultralytics/yolov5', 'custom', source='local', path='yolov5n-seg.pt')
-    # atau
-    model = torch.load('yolov5n-seg.pt')
+    model = torch.hub.load('ultralytics/yolov5', 'yolov5n', pretrained=False)
+    checkpoint = torch.load('yolov5n-seg.pt', map_location='cpu')  # sesuaikan path
+    model.load_state_dict(checkpoint['model'].state_dict())
     model.eval()
     return model
+
 
 
 model = load_model()
