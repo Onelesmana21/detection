@@ -2,7 +2,7 @@ import sys
 sys.path.append('./yolov5')  # tambahkan path ke folder yolov5
 
 import streamlit as st
-from models.common import DetectMultiBackend
+from  import DetectMultiBackend
 import torch
 from PIL import Image
 import numpy as np
