@@ -1,5 +1,5 @@
 import sys
-sys.path.append('./yolov5')  # folder yolov5 ada di root repo
+sys.path.append('./yolov5')  # tambahkan path ke folder yolov5
 
 import streamlit as st
 from models.common import DetectMultiBackend
@@ -9,7 +9,7 @@ import numpy as np
 
 @st.cache(allow_output_mutation=True)
 def load_model():
-    weights = 'yolov5n-seg.pt'  # path model relatif terhadap root
+    weights = 'models/yolov5n-seg.pt'  # sesuaikan path model
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = DetectMultiBackend(weights, device=device)
     model.eval()
@@ -23,7 +23,10 @@ if uploaded_file:
     st.image(image, caption="Gambar Asli", use_container_width=True)
     img = np.array(image)
 
-    results = model(img)  # pastikan adaptasi panggilan sesuai dengan API DetectMultiBackend
-    # proses hasil dan tampilkan sesuai kebutuhan
+    # lakukan prediksi (adaptasi sesuai input model)
+    results = model(img)
+
+    # proses dan tampilkan hasil sesuai kebutuhan (misal bounding boxes)
+    # ...
 else:
     st.info("Unggah gambar untuk mulai deteksi")
