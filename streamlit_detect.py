@@ -1,11 +1,12 @@
 import sys
-sys.path.append('./yolov5')  # tambahkan path ke folder yolov5
+sys.path.insert(0, './yolov5')
 
 import streamlit as st
-from  import DetectMultiBackend
+from models.common import DetectMultiBackend
 import torch
 from PIL import Image
 import numpy as np
+
 
 @st.cache(allow_output_mutation=True)
 def load_model():
