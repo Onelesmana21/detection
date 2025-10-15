@@ -3,6 +3,7 @@ sys.path.insert(0, './yolov5')
 
 import streamlit as st
 from models.common import DetectMultiBackend
+from ultralytics import YOLO
 import torch
 from PIL import Image
 import numpy as np
